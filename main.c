@@ -1,7 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-#define _GNU_SOURCE
-#include <stdlib.h>
 
 bus_t bus = {NULL, NULL, NULL, 0};
 
@@ -9,7 +6,6 @@ bus_t bus = {NULL, NULL, NULL, 0};
 * main - function for monty code interpreter
 * @argc: argument count
 * @argv: argument value
-*
 * Return: 0 on success
 */
 int main(int argc, char *argv[])
