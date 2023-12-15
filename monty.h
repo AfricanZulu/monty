@@ -1,6 +1,10 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+<<<<<<< HEAD
+=======
+#define_POSIX_C_SOURCE 200809L
+>>>>>>> 772725bff20e46403348b7991a9b5bfb80a460a3
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
