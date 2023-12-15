@@ -1,6 +1,6 @@
-#define _POSIX_C_SOURCE 200809L
 #ifndef MONTY_H
 #define MONTY_H
+#define_POSIX_C_SOURCE 200809L
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -77,4 +77,3 @@ void addqueue(stack_t **head, int n);
 void f_queue(stack_t **head, unsigned int counter);
 void f_stack(stack_t **head, unsigned int counter);
 #endif
-#define_POSIX_C_SOURCE 200809L
