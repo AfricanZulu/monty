@@ -1,45 +1,44 @@
-#include <stdio.h>
+#include "monty.h"
+
+void unused(void);
+cmds head = {NULL, NULL, 0, 0, 0};
 
 /**
-* main - function for monty code interpreter
-* @argc: argument count
-* @argv: argument value
-* Return: 0 on success
-*/
-int main(int argc, char *argv[])
+ * main - execution point of monty interpreter
+ * @ac: argument count
+ * @av: argument variables
+ *
+ * Return: 0 on success
+ */
+int main(int ac, char **av)
 {
-	char *content;
-	FILE *file;
-	size_t size = 0;
-	ssize_t read_line = 1;
+	FILE *fd;
 	stack_t *stack = NULL;
-	unsigned int counter = 0;
+	instruction_t instructions[] = {
+		{"push", push},	{"pall", pall},
+		{"pint", pint},	{"pop", pop},
+		{"swap", swap},	{"add", add},
+		{"nop", nop}, {"sub", sub},
+		{"div", _div}, {"mul", _mul},
+		{"mod", _mod}, {"pchar", pchar},
+		{"pstr", pstr}, {"rotl", rotl_f},
+		{"rotr", rotr}, {"queue", queue_f},
+		{"stack", stack_f}, {NULL, NULL}
+	};
 
-	if (argc != 2)
+	if (ac != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	file = fopen(argv[1], "r");
-	bus.file = file;
-	if (!file)
+	fd = fopen(av[1], "r");
+	if (fd == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fprintf(stderr, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	while (read_line > 0)
-	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
-		bus.content = content;
-		counter++;
-		if (read_line > 0)
-		{
-			execute(content, &stack, counter, file);
-		}
-		free(content);
-	}
-	free_stack(stack);
-	fclose(file);
-return (0);
+	monty_process(fd, &stack, instructions);
+	free_stack(&stack);
+	fclose(fd);
+	exit(EXIT_SUCCESS);
 }
