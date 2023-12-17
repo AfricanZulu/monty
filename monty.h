@@ -86,3 +86,4 @@ void f_stack(stack_t **head, unsigned int counter);
 
 
 #endif
+#define  _POSIX_C_SOURCE 200809L
